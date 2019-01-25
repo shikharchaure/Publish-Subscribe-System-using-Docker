@@ -1,0 +1,19 @@
+version: "2"
+services:
+   db2:
+     image: postgres
+     environment:
+      - POSTGRES_USER=postgres
+      - POSTGRESS_PASSWORD=admin
+     ports:
+      - 5432
+   web:
+     image: dockerimage2
+     depends_on:
+      - db2
+     ports:
+      - 8082:8082
+     environment:
+      - DATABASE_HOST=db2
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=admin
